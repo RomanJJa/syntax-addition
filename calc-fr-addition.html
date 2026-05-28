@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="fr" prefix="og: http://ogp.me/ns#">
+<head>
+	<!-- https://romans.cc/u/rj/syntax-addition2/app/calc-fr-addition.html -->
+	<title>Addition</title>
+	<meta charset="UTF-8">
+	<base href="http://127.0.0.1/"/>
+	<!-- <base href="https://romans.cc/"/> -->
+	<link type="text/css" rel="stylesheet" href="lib/pslides/v0.3/style.css"/>
+	<script src="lib/pslides/v0.3/main.js"></script>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body style="font-size:1.2em;">
+
+<style>
+.responsedisplay {
+	color: black;
+	padding: 0.1em;
+	background-color: #F8F8F8;
+	border: 2px solid black;
+	min-width: 21vh;
+	min-height: 15vh;
+}
+.plusspace {
+	font-size: 3vh;
+}
+.plussign, .summand, .responsedisplay {
+	font-size: 12vh;
+}
+.mask {
+	font-size: 9vh;
+	font-weight: bold;
+}
+
+.responsedisplay, .probeterm {
+	font-family: "Consolas", "Courier New", monospace;
+}
+
+p-nobr.probeterm {
+    font-size: 0;
+    /* optional but often helpful */
+    letter-spacing: 0;
+}
+
+div.left_screenbutton, div.right_screenbutton {
+	position:fixed;
+	bottom: 2em;
+	padding: 0.7em;
+	border-radius: 50%;
+	font-size: 2em;
+	width: 1em;
+	height: 1em;
+	color: white;
+	font-family: monospace, monospace;
+}
+
+div.left_screenbutton {
+	left: 1em;
+}
+
+div.right_screenbutton {
+	right: 1em;
+}
+
+.red {
+	background-color: red;
+}
+.blue {
+	background-color: blue;
+}
+
+/* Pre-Questionnaire */
+p.question {
+	margin-bottom: 0em;
+}
+
+</style>
+
+<p-data id="teststimuli" format="csv" order="pseudoshuffle(3)" src="/u/rj/syntax-calc/app/calc-test_teens.csv"></p-data>
+<p-data id="practicestimuli" format="csv" order="pseudoshuffle(3)" src="/u/rj/syntax-calc/app/calc-practice_teens.csv"></p-data>
+<script src="/u/rj/syntax-calc/app/calc-addition.js"></script>
+	
+	<p-slide name="agree_to_participate">
+		<h1>Bienvenue dans l'expérience <br/>des nombres <p-nobr>« Calc-Additions »</p-nobr></h1>
+		<p-formframe>
+			<p>Merci d'envisager de participer à cette expérimentation et de soutenir la recherche scientifique.</p> 
+			<p>De nombreuses personnes ont du mal à mémoriser les chiffres dans leur vie quotidienne.
+				Cette expérience tente d'étudier comment les gens conservent les chiffres dans leur mémoire de travail.
+				C'est la première fois que cette question est étudiée avec une telle tâche.
+			</p>
+			<p>
+				<b>Les tâches dans cette expérience</b>:
+				Votre tâche consistera à effectuer des calculs mentaux. 
+				Les problèmes consisteront à additionner des nombres de 11 à 19.
+				Pour rester précis, cela nécessite une certaine <b>vigilance</b>.
+				Ce sont des tâches simples dans lesquelles vous devez réagir
+				<b>aussi rapidement et précisément</b> que possible.
+			</p>
+			<p id="conditions">
+				<b>Conditions de participation</b>:
+				<ul>
+					<li>Votre langue maternelle est le <b>français parlé en France</b> (et non en Belgique ou en Suisse).</li>
+					<li>Vous devez utiliser un ordinateur ou un portable <b>équipé d'un clavier</b> pour participer à cette expérience.</li>
+					<li>Vous n'avez <b>pas déjà participé</b> à cette expérience.</li>
+					<li>Vous disposez d'une <b>connexion Internet stable</b>.</li>
+					<li>Vous vous trouvez dans un <b>environnement calme</b>. 
+						Veuillez ne <b>pas écouter</b> de musique ni de podcast pendant que vous réalisez cette expérience.</li>
+				</ul>
+			</p>
+			<p>
+				<b>Arrêt de l'expérience</b>: 
+				Vous pouvez arrêter l'expérience et fermer la fenêtre à tout moment, 
+				même si vous avez accepté de participer, sans aucune conséquence. 
+				Cependant, vous n’aurez pas accès à l’argent de participation.
+				Vous disposez du temps que vous estimez nécessaire pour prendre votre décision.
+			</p>
+			<p>
+				<b>Votre dédommagement</b>: 
+				Vous recevrez 10 € (sur Prolific) pour votre participation une fois l'expérimentation terminée (prévue pour Fevrier). 
+				Les informations de paiement seront affichées à la fin de l'expérience.
+			</p>
+			<p>
+				<b>Vos données</b>: 
+				L'expérience enregistrera les touches enfoncées sur votre ordinateur et 
+				l'heure à laquelle elles ont été enfoncées. Une fois l'expérience terminée, 
+				les données expérimentales seront stockées séparément de toute information personnelle telle que 
+				les coordonnées et les informations de paiement. 
+				À la fin de l'expérience, vous pourrez télécharger toutes les données collectées 
+				tout au long de celle-ci et qui nous seront transférées.
+			</p>
+			<p>
+				<b>Une question ?</b>
+				En cas d’acceptation, vous pourrez à tout moment revenir sur votre décision, 
+				sans nous en préciser la raison, par simple courriel adressé à <a href="mailto:roman.janssen@u-paris.fr">roman.janssen@u-paris.fr</a>
+				ou par courrier postal à l'adresse suivante :<br/>Roman Janssen, LaPsyDÉ, 46 rue Saint Jacque, 75005 Paris
+			</p>
+			<p-input type="checkbox" name="participation_agreement" required>
+				<label for="agreement_participation">
+					J'ai lu le texte ci-dessus, je l'ai compris et j'accepte les conditions de l'expérimentation et du traitement des données.
+					J'accepte également que mes données puissent être utilisées à des fins de recherche.
+				</label>
+				<label for="requirements_fulfilled">
+					Je remplis les <a href="#conditions">les conditions</a> de participation mentionnées ci-dessus.
+				</label>
+			</p-input>
+			<p>Si vous n'acceptez pas les conditions, vous ne pourrez pas participer et vous pourrez fermer la fenêtre.</p>
+			<div class="nextbuttonbuffer" style="height:3em;"></div>
+			<p align="center"><p-next>J'accepte et je participe</p-next></p>
+			<div class="nextbuttonbuffer" style="height:3em;"></div>
+		</p-formframe>
+	</p-slide>
+	
+	<p-slide name="do_not_refresh">
+		<p-center>
+			<p>Merci d'avoir décidé de participer à l'expérimentation et de soutenir la recherche.</p>
+			<p>
+				Veuillez <b>ne pas</b> recharger la page tout au long du test. 
+				<b>Donc, n'appuyez pas</b> sur <p-nobr>« Actualiser »</p-nobr> ou <p-nobr>« Retour »</p-nobr> dans la fenêtre du <b>navigateur</b>.
+				<br/>Nous vous prions de bien vouloir vous trouver dans un environnement calme pendant l'expérience et de ne rien écouter d'autre.
+			</p>
+			<p jsfill="sendOutData()" style="display:none;"></p>
+			<p align="center"><p-back></p-back><p-next></p-next></p>
+		</p-center>
+	</p-slide>
+	
+	<p-slide name="provide_prolific_id">
+		<p-center>
+			<p>
+				<label for="prolific_id">Si vous souhaitez recevoir un paiement, quel est votre <b>identifiant Prolific</b> ?</label><br/>
+				<input name="prolific_id" type="text" id="prolific_id"/>
+			</p>
+			<p><p-back></p-back><p-next></p-next></p>
+		</p-center>
+	</p-slide>
+	<p-slide name="pre_questionnaire">
+		<h1 style="margin-top:2em;margin-bottom:1em">Quelques informations générales</h1>
+		<p-formframe align="left" style="font-size:120%;">
+			
+			<p class="question"><b><label for="age" name="age">Quel âge avez-vous ?</label></b></p>
+			<input name="age" id="age" type="number" required min="18" max="120"/><br/>
+			
+			<p class="question"><b>Quel est votre sexe ?</b></p>
+			<p-input type="radio" name="sex" required>
+				<label for="gender_female">féminin</label>
+				<label for="gender_male">masculin</label>
+				<label for="gender_diverse">divers</label>
+			</p-input>
+			
+			<p class="question"><b>Êtes-vous gaucher ou droitier ?</b></p>
+			<p-input type="radio" name="handedness" required>
+				<label for="left_handed">gaucher</label>
+				<label for="both_handed">ambidextre</label>
+				<label for="right_handed">droitier</label>
+			</p-input>
+			
+			<p class="question"><b>Avec quelle main écrivez-vous ?</b></p>
+			<p-input type="radio" name="writing_handedness" required>
+				<label for="l_handed_write">la main gauche</label>
+				<label for="b_handed_write">la main droite et de la main gauche</label>
+				<label for="r_handed_write">la main droite</label>
+			</p-input>
+			
+			<p class="question"><b>Lesquelles des affirmations suivantes s'appliquent à vous ?</b></p>
+			<p-input type="checkbox">
+				<label for="bilingual">J'ai grandi dans un foyer bilingue.</label>
+				<label for="mothertongue">Le français est ma langue maternelle.</label>
+				<label for="learned_math_in_French">J'ai appris les mathématiques en première et deuxième année en français.</label>
+				<label for="other_lang">Je parle couramment une autre langue.</label>
+				<label for="grown_up_in_France">J'ai grandi en France pendant la majeure partie de mon enfance.</label>
+				<label for="count_in_French">Je compte les objets et fais des calculs dans ma tête en français.</label>
+				<label for="dyslexia">Je suis dyslexique.</label>
+				<label for="dyscalculia">Je suis dyscalculique.</label>
+				<label for="calc_problems">J'ai des difficultés avec le calcul mental.</label>
+				<label for="grammar_problems">J'ai des problèmes avec la grammaire française.</label>
+				<label for="ortho_problems">J'ai des problèmes d'orthographe.</label>
+				<label for="read_book">J'ai lu un livre du début à la fin au cours des deux dernières années.</label>
+			</p-input>
+		</p-formframe>
+		<p-back></p-back><p-next send></p-next>
+		<div style="height:3em;"></div>
+	</p-slide>	
+
+	<p-slide name="continue_to_task">
+		<p-center>
+			<p>
+				Parfait, nous pouvons maintenant continuer la tâche. 
+				Vous devez utiliser votre clavier.<br/>
+				(la <kbd>barre d'espace</kbd> et <b>les nombres</b>)
+			</p>
+			<p-back></p-back><p-next></p-next>
+		</p-center>
+	</p-slide>
+	
+	<p-slide name="instructions">
+		<p-formframe align="justify">
+			<h1 style="padding-top:1em;">Instructions pour la tâche</h1>
+			<p>
+				Un <b>signe plus (+)</b> apparaîtra à l'écran. 
+				Appuyez sur la <kbd>barre d'espace</kbd> pour afficher une addition. 
+				Dès que vous connaissez la solution, <b>relâchez</b> la barre d'espace. 
+				L'addition disparaîtra et un champ apparaîtra pour saisir votre réponse.
+			</p>
+			<p>
+				Saisissez la solution au clavier. Une fois terminé, appuyez de nouveau sur la barre d'espace. 
+				Un nouveau signe plus apparaîtra, vous permettant de lancer une nouvelle tâche.
+			</p>
+			<p>
+				N'essayez pas de vous souvenir de l'addition avant de relâcher la <kbd>barre d'espace</kbd>, 
+				car vous devriez déjà connaître la réponse.
+			</p>
+			<p>
+				L'expérience principale comportera <b jsfill="pslides.data.teststimuli.length">300</b>
+				problèmes d'addition. 
+				C'est pourquoi il est judicieux d'être aussi <b>rapide et précis</b> que possible.
+			</p>
+			<p jsfill="sendOutData()" style="display:none;"></p>
+			<p align="center">
+				<p-next>Continuer</p-next>
+			</p>
+		</p-formframe>
+	</p-slide>
+	
+	<p-slide name="repeat_instructions" keysnext="Space">
+		<p-center>
+			<p><b>N'oubliez pas :</b></p>
+			<p>
+				Maintenez la barre d'espace enfoncée pendant le calcul. Cela <b>vous aidera</b>.
+			</p>
+			<p>
+				Saisissez ensuite rapidement la réponse dans le champ après avoir relâché la barre d'espace.
+			</p>
+			<p>Encore, soyez aussi <b>rapide et précis</b> que possible.</p>
+			
+			<p align="center" style="margin-top:3em;">
+				Pour <b>commencer</b> à vous entraîner, appuyez sur la <kbd>barre d'espace</kbd>.
+			</p>
+		</p-center>
+	</p-slide>
+	
+	
+	<!-- Addition Practice -->
+	<script>
+		// Before running the task:
+		addition = pslides.data.practicestimuli;
+		Iterator = 0, completedBlocks=0;	
+		ncorrect = 0.00001, nincorrect = 0.00001;
+	</script>
+	<p-slide name="blank_begin_practice" maxms="1000"></p-slide>
+	<p-while cond="ncorrect < addition.length * 0.7" name="addition_practice"> 
+		<p-set name="practice_trial" id="trial_set">
+			<p-slide name="trial_blank" maxms="400"></p-slide>
+			<p-slide name="trial_space">
+				<p-center class="probeterm"><span class="plussign">+</span></p-center>
+			</p-slide>
+			<p-slide name="trial_response">
+				<p-var name="stim" jsfill="addition[Iterator]">{{stim}}</p-var>
+				<p-var name="leftCorrect" jsfill="leftCorrect">{{leftCorrect}}</p-var>
+				<p-center class="probeterm">
+					<p-nobr class="probeterm">
+						<span class="summand" jsfill="addition[Iterator].summand1">S1</span>
+						<span class="plusspace">&nbsp;</span>
+						<span class="plussign">+</span>
+						<span class="plusspace">&nbsp;</span>
+						<span class="summand" jsfill="addition[Iterator].summand2">S2</span>
+					</p-nobr>
+				</p-center>
+			</p-slide>
+			<p-slide name="trial_typedigits" keysnext="Space"><!-- maxms="3500" -->
+				<p-center class="responsedisplay"></p-center>
+			</p-slide>
+			<script>
+				// clear number pad/pads:
+				clearResponseBoxes();
+				// determine if response was correct:
+				determineCorrectness();
+			</script>
+			<p-slide name="trial_blank" maxms="100">
+				<p-var name="response_number" jsfill="lastResponse">{{lastResponse}}</p-var>
+				<p-var name="accuracy" jsfill="Number(isAccurate)">{{accuracy}}</p-var>
+				<p-var name="validity" jsfill="Number(isAccurate!==null)">{{validity}}</p-var>
+			</p-slide>
+		</p-set>
+		<p-slide name="trial_feedback" maxms="900">
+			<p-center jsfill="writeFeedback()">{{Feedback}}</p-center>
+		</p-slide>
+		<p-if cond="slowTyping">
+			<p-slide name="type_immediately" maxms="2500">
+				<p-center style="font-size:2em;">
+					<p-nobr>&#128517; Veuillez ne pas attendre &#128517;<br/>avant de taper.</p-nobr>
+				</p-center>
+			</p-slide>
+			<script>slowTyping=false;</script>
+		</p-if>
+		<script>
+			Iterator++;
+			if (addition !== undefined && Iterator >= addition.length) {
+				Iterator = 0; ncorrect = 0; nincorrect = 0;
+			}
+		</script>
+	</p-while>
+	
+	<script>
+		// Before running the task:
+		addition = pslides.data.teststimuli;
+		Iterator = 0; completedBlocks=0;	
+		ncorrect = 0; nincorrect = 0;
+		//if (addition !== undefined) nPerBlock = Math.round(addition.length/nAllBlocks);
+	</script>
+	<p-slide name="practice_over" keysnext="Space">
+		<p-center>
+			<h1>Bien joué ! &#128522;</h1>
+			<p>
+				La <b>partie principale</b> de l'étude commence maintenant.
+				Il y aura une pause toutes les 
+				<span jsfill="nPerBlock">{{nPerBlock}}</span> tâches.
+			</p>
+			<p>
+				Si vous souhaitez commencer, veuillez appuyer sur la 
+				<kbd>barre d'espace</kbd>.
+			</p>
+		</p-center>
+	</p-slide>
+	
+	<!-- Addition Task Test -->
+
+	<p-slide name="blank_begin_task" maxms="1000">
+		<p-center style="font-size:2em;">Ça commence.</p-center>
+	</p-slide>
+	<p-slide name="blank_begin_task" maxms="1000"></p-slide>
+	<p-while cond="Iterator < addition.length" name="addition_test"> 
+		<p-set name="test_trial" idfill="trial_set"></p-set>
+		<p-if cond="slowTyping">
+			<p-slide name="type_immediately" maxms="2500">
+				<p-center style="font-size:2em;">
+					<p-nobr>&#128517; Veuillez ne pas attendre &#128517;<br/>avant de taper.</p-nobr>
+				</p-center>
+			</p-slide>
+			<script>slowTyping=false;</script>
+		</p-if>
+		<p-if cond="Iterator!=0 && Iterator%nPerBlock==0" name="is_pause">
+			<script>
+				completedBlocks++;
+				blockAccuracy = Math.round(100*ncorrect/(ncorrect+nincorrect))+" %";
+				// now split the break into mid-section and non-mid section.
+			</script>
+			<p-slide name="pause" keysnext="Space">
+				<p-center>
+					<p>
+						Vous avez terminé bloc
+						<span jsfill="completedBlocks" name="block_number">block</span>
+						sur <span jsfill="nAllBlocks">XX</span> blocs.
+						Vous avez répondu correctement dans 
+						<b jsfill="blockAccuracy" name="block_percentage_correct">XX</b> des cas.
+					</p>
+					<p>Vous êtes maintenant invités à faire une pause.</p>
+					<p>
+						Si vous souhaitez continuer, veuillez appuyer sur la 
+						<kbd>barre d'espace</kbd>.
+					</p>
+				</p-center>
+				<p jsfill="sendOutData()" style="display:none;"></p>
+			</p-slide>
+			<script>ncorrect = 0; nincorrect = 0;</script>
+			<p-slide name="after_pause_blank" maxms="500"></p-slide>
+		</p-if>
+		<script>Iterator++;</script>
+	</p-while>
+
+	<p-slide name="you_finished" group="fixed">
+		<p-center>
+			<h1>Bravo! &#x1F929;</h1>
+			<p>Vous avez terminé l'expérience avec succès.</p>
+			<div style="height:3em;"></div>
+			<p-next>Continuer</p-next>
+		</p-center>
+	</p-slide>
+	
+	<p-slide name="post_questions">
+		<p-formframe>
+			<h1 style="margin-bottom:1.5em;">Quelques dernières questions</h1>
+
+			<p><b>Avez-vous utilisé une stratégie particulière pour résoudre les tâches ?</b></p>
+			<p-input name="strategy" type="checkbox">
+				<label for="strategy_digit">Pour les tâches simples, j’ai simplement additionné les chiffres.</label>
+				<label for="strategy_verbal">Pour les tâches difficiles, j’ai effectué le calcul verbalement dans ma tête.</label>
+				<label for="strategy_carry">Pour les tâches avec retenue, j’ai automatiquement ajouté 10.</label>
+				<label for="strategy_units">J’ai d’abord additionné les unités, puis j’ai ajouté le résultat au plus grand nombre.</label>
+				<label for="strategy_other">J’ai utilisé une autre stratégie :<br/>
+					<textarea name="other_strategy" id="other_strategy" style="width:100%;margin:0;"></textarea>
+				</label>
+			</p-input>
+
+			<div style="margin-bottom:2em;">
+				<b>Avez-vous remarqué un schéma dans l’ordre des tâches présentées ?</b><br/>
+				<textarea name="noticed_pattern" id="noticed_pattern"></textarea>
+			</div>
+
+			<div style="margin-bottom:2em;">
+				<b>L’un des nombres à additionner était toujours compris entre 10 et 19.<br>
+				Avez-vous pu tirer parti de cette information ? Si oui, comment ?</b><br/>
+				<textarea name="teen_strategy" id="teen_strategy"></textarea>
+			</div>
+
+			<div>
+				<b>Avez-vous lu les nombres à voix haute dans votre tête (voix intérieure) pour mieux les mémoriser ?</b><br/>
+				<p-input type="likert" name="inner_reading" required
+				options="jamais;presque jamais;parfois;parfois oui parfois non;souvent;presque toujours;toujours"></p-input>
+			</div>
+
+			<div>
+				<b>Avez-vous mémorisé les résultats intermédiaires en prononçant intérieurement les mots-nombres ?</b><br/>
+				<p-input type="likert" name="interim_verbal" required
+				options="jamais;presque jamais;parfois;parfois oui parfois non;souvent;presque toujours;toujours"></p-input>
+			</div>
+
+			<div>
+				<b>Avez-vous mémorisé les résultats intermédiaires en visualisant les nombres dans votre tête ?</b><br/>
+				<p-input type="likert" name="interim_visual" required
+				options="jamais;presque jamais;parfois;parfois oui parfois non;souvent;presque toujours;toujours"></p-input>
+			</div>
+
+			<div>
+				<b>Vos doigts vous ont-ils aidé(e) d’une manière ou d’une autre pendant les calculs ?</b><br/>
+				<p-input type="likert" name="interim_fingers" required
+				options="jamais;presque jamais;parfois;parfois oui parfois non;souvent;presque toujours;toujours"></p-input>
+			</div>
+
+			<div>
+				<b>Globalement, avez-vous trouvé les tâches plutôt difficiles ou plutôt faciles ?</b><br/>
+				<p-input type="likert" name="task_difficulty" required
+				options="très difficiles;difficiles;plutôt difficiles;ni faciles ni difficiles;plutôt faciles;faciles;très faciles"></p-input>
+			</div>
+
+			<div>
+				<b>Avez-vous d’autres commentaires sur les tâches ou des suggestions pour les améliorer ?</b><br/>
+				<textarea name="comment_text" id="comment_text"></textarea>
+			</div>
+
+			<p align="center" style="margin-top:5em;"><p-next>Suivant</p-next></p>
+		</p-formframe>
+	</p-slide>
+	<p-slide name="upload_data">
+		<script>sendOutData(element=document.getElementById("upload_data"));</script>
+		<p-formframe align="center">
+			<h1>Votre données</h1>
+			<p>
+				Vous pouvez maintenant télécharger vos données. 
+				Assurez-vous que votre connexion Internet fonctionne.
+			</p>
+			<p hidden><p-upload id="upload_data" format="csv">Envoyer mes données</p-upload></p>
+			<p>Téléchargement des données anonymisées sur le serveur :</p>
+			<p><p-message for="upload_data"><span style="color:darkgrey;">Données non envoyées.</span></p-message></p>
+			<p>Vous avez également la possibilité de télécharger vos données sur votre ordinateur :</p>
+			<p><p-download id="download_data" format="csv">Télécharger</p-download></p>
+			<p><p-message for="download_data"></p-message></p>
+			<p align="center" style="margin-top:3em;"><p-back>Retour</p-back><p-next>Finition</p-next></p>
+		</p-formframe>
+	</p-slide>
+	<p-slide name="thank_you_end">
+		<p-center>
+			&#x1F64F; <b>Merci beaucoup</b> pour votre participation ! &#x1F64F;<br/><br/>
+			Retour à la plateforme <a href="https://app.prolific.com/submissions/complete?cc=C1GOSKW7">Prolific (C1GOSKW7)</a>.
+		</p-center>
+	</p-slide>
+</body>
+</html>

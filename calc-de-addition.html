@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="de" prefix="og: http://ogp.me/ns#">
+<head>
+	<!-- https://romans.cc/u/rj/syntax-addition2/app/calc-de-addition.html -->
+	<title>Addition</title>
+	<meta charset="UTF-8">
+	<base href="http://127.0.0.1/"/>
+	<!-- <base href="https://romans.cc/"/> -->
+	<link type="text/css" rel="stylesheet" href="lib/pslides/v0.3/style.css"/>
+	<script src="lib/pslides/v0.3/main.js"></script>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body style="font-size:1.2em;">
+
+<style>
+.responsedisplay {
+	color: black;
+	padding: 0.1em;
+	background-color: #F8F8F8;
+	border: 2px solid black;
+	min-width: 21vh;
+	min-height: 15vh;
+}
+.plusspace {
+	font-size: 3vh;
+}
+.plussign, .summand, .responsedisplay {
+	font-size: 12vh;
+}
+.mask {
+	font-size: 9vh;
+	font-weight: bold;
+}
+
+.responsedisplay, .probeterm {
+	font-family: "Consolas", "Courier New", monospace;
+}
+
+p-nobr.probeterm {
+    font-size: 0;
+    /* optional but often helpful */
+    letter-spacing: 0;
+}
+
+div.left_screenbutton, div.right_screenbutton {
+	position:fixed;
+	bottom: 2em;
+	padding: 0.7em;
+	border-radius: 50%;
+	font-size: 2em;
+	width: 1em;
+	height: 1em;
+	color: white;
+	font-family: monospace, monospace;
+}
+
+div.left_screenbutton {
+	left: 1em;
+}
+
+div.right_screenbutton {
+	right: 1em;
+}
+
+.red {
+	background-color: red;
+}
+.blue {
+	background-color: blue;
+}
+
+/* Pre-Questionnaire */
+p.question {
+	margin-bottom: 0em;
+}
+
+</style>
+
+<p-data id="teststimuli" format="csv" order="pseudoshuffle(3)" src="/u/rj/syntax-calc/app/calc-test_teens.csv"></p-data>
+<p-data id="practicestimuli" format="csv" order="pseudoshuffle(3)" src="/u/rj/syntax-calc/app/calc-practice_teens.csv"></p-data>
+<script src="/u/rj/syntax-calc/app/calc-addition.js"></script>
+	
+	
+	<p-slide name="agree_to_participate">
+		<h1>Willkommen im Experiment <br/><p-nobr>"Calc-Additions"</p-nobr></h1>
+		<p-formframe>
+			<p>Versuchsleiter*in: <input id="experimenter" name="experimenter" type="text" required></p>
+			<p>Vielen Dank, dass Sie erwägen, an diesem Experiment teilzunehmen und die wissenschaftliche Forschung zu unterstützen.</p> 
+			<p>
+				Viele Menschen haben im Alltag Schwierigkeiten, sich Zahlen zu merken. Dieses Experiment untersucht, wie Menschen Zahlen im Arbeitsgedächtnis behalten. Es ist das erste Mal, dass diese Fragestellung mit einer solchen Aufgabe untersucht wird.
+			</p>
+			<p>
+				<b>Aufgaben im Experiment</b>:
+				Ihre Aufgabe besteht darin, mentale Rechenaufgaben durchzuführen.
+				Die Aufgaben bestehen aus zweistelliger Addition.
+				Um genau zu bleiben, ist eine gewisse Aufmerksamkeit erforderlich.
+				Daher ist es wichtig, dass Sie keine Musik oder Podcasts oder Ähnliches hören, um Ihre Aufmerksamkeit zu bewahren.
+				Es handelt sich um einfache Aufgaben, bei denen Sie so schnell und genau wie möglich reagieren sollen.
+			</p>
+			<p id="conditions">
+				<b>Teilnahmebedingungen</b>:
+				<ul>
+					<li>Ihre <b>Muttersprache</b> ist Deutsch.</li>
+					<li>Sie verwenden einen Computer oder Laptop <b>mit Tastatur</b>.</li>
+					<li>Sie haben <b>noch nicht</b> an diesem Experiment teilgenommen.</li>
+					<li>Sie verfügen über <b>eine stabile Internetverbindung</b>.</li>
+					<li>Sie befinden sich in einer ruhigen Umgebung.Bitte bleiben Sie während der Bearbeitung an Ihrem Platz sitzen.</li>
+				</ul>
+			</p>
+			<p>
+				<b>Abbruch des Experiments</b>: 
+				Sie können das Experiment jederzeit abbrechen und das Fenster schließen – auch nachdem Sie zuvor zugestimmt haben – ohne Konsequenzen.
+				Auch wenn Sie die Studie vorzeitig abbrechen, haben Sie Anspruch auf eine entsprechende Aufwandsentschädigung bzw. Versuchspersonenstunden für den bis dahin erbrachten Zeitaufwand. 
+			</p>
+			<p>
+				<b>Vergütung</b>: 
+				Sie erhalten eine Versuchspersonenstunde für die Teilnahme nach Abschluss des Experiments. Bitte teilen Sie nach Abschluss des Experiments der Versuchsleitung ihre SONA ID mit.
+			<p>
+				<b>Ihre Daten</b>: 
+				Das Experiment zeichnet die gedrückten Tasten auf sowie Zeitpunkte der Tastendrücke.
+				Nach Abschluss werden die Daten getrennt von persönlichen Informationen gesichert.
+				Am Ende können Sie Ihre Daten herunterladen. Wenn die Daten zum Schluss aufgezeichnet sind,
+				lassen die Daten keine Rückschlüsse auf Ihre Person zu. Nur Sie kennen somit Ihren 
+				Versuchspersonen-Code: <p-subjcode></p-subjcode>
+			</p>
+			<p>
+				<b>Fragen?</b>
+				Sie können Ihre Teilnahme jederzeit widerrufen, ohne Gründe anzugeben, per E-Mail oder Post:
+				<a href="mailto:roman.janssen@u-paris.fr">roman.janssen@u-paris.fr</a>
+				<br/>
+				Roman Janssen, LaPsyDÉ, 46 rue Saint Jacque, 75005 Paris
+			</p>
+			<p-input type="checkbox" name="participation_agreement" required>
+				<label for="agreement_participation">
+					Ich habe den Text gelesen und verstanden und stimme den Bedingungen sowie der Datenverarbeitung zu.
+				</label>
+				<label for="requirements_fulfilled">
+				Ich erfülle die <a href="#conditions">Teilnahmebedingungen</a>.
+				</label>
+			</p-input>
+			<p>Wenn Sie die Bedingungen nicht akzeptieren, können Sie nicht an der Studie teilnehmen. Sie können das Fenster dann schließen.</p>
+			<div class="nextbuttonbuffer" style="height:3em;"></div>
+			<p align="center"><p-next> Ich akzeptiere und nehme teil</p-next></p>
+			<div class="nextbuttonbuffer" style="height:3em;"></div>
+		</p-formframe>
+	</p-slide>
+	<p-slide name="provide_subj_code">
+		<p-center>
+			<p>
+				Danke, dass Sie teilnehmen! &#x1F64F; Ihr Probanden-Code lautet:<br/>
+				<p-subjcode></p-subjcode>
+			</p>
+			<p>
+				Bitte aktualisieren Sie diese Seite <b>nicht</b> während der Durchführung und klicken Sie <b>nicht</b> auf den "Zurück"-Knopf im Browser.
+			</p>
+			<p jsfill="sendOutData()" hidden></p>
+			<p align="center"><p-back></p-back><p-next></p-next></p>
+		</p-center>
+	</p-slide>
+	
+	<p-slide name="pre_questionnaire">
+		<h1 style="margin-top:2em;margin-bottom:1em">Allgemeine Informationen</h1>
+		<p-formframe align="left" style="font-size:120%">
+			
+			<p class="question"><b><label for="age" name="age">Wie alt sind Sie? (in Jahren)</label></b></p>
+			<input name="age" id="age" type="number" required min="18" max="120"/><br/>
+			
+			<p class="question"><b>Welchem Geschlecht fühlen Sie sich zugehörig?</b></p>
+			<p-input type="radio" name="sex" required>
+				<label for="gender_female">weiblich</label>
+				<label for="gender_male">männlich</label>
+				<label for="gender_diverse">divers</label>
+			</p-input>
+			
+			<p class="question"><b>Sind Sie rechts- oder linkshändig?</b></p>
+			<p-input type="radio" name="handedness" required>
+				<label for="left_handed">linkshändig</label>
+				<label for="both_handed">beidhändig</label>
+				<label for="right_handed">rechtshändig</label>
+			</p-input>
+			
+			<p class="question"><b>Welche Hand benutzen Sie zum schreiben?</b></p>
+			<p-input type="radio" name="writing_handedness" required>
+				<label for="l_handed_write">die linke Hand</label>
+				<label for="b_handed_write">beide Hände</label>
+				<label for="r_handed_write">die rechte Hand</label>
+			</p-input>
+			
+			<p class="question"><b>Welche der folgenden Aussagen treffen auf Sie zu?</b></p>
+			<p-input type="checkbox">
+				<label for="bilingual">Ich bin zweisprachig aufgewachsen.</label>
+				<label for="mothertongue">Deutsch ist meine Muttersprache.</label>
+				<label for="learned_math_in_French">Ich habe Mathematik in Klasse 1–2 auf Französisch gelernt</label>
+				<label for="learned_math_in_German">Ich habe Mathematik in Klasse 1–2 auf Deutsch gelernt.</label>
+				<label for="learned_German">Ich habe Deutsch erst im weiteren Verlauf meines Lebens gelernt.</label>
+				<label for="other_lang">Ich spreche eine weitere Sprache fließend.</label>
+				<label for="grown_up_in_Germany">Ich bin den größten Teil meiner Kindheit in Deutschland aufgewachsen.</label>
+				<label for="count_in_German">Ich rechne und zähle im Kopf auf Deutsch.</label>
+				<label for="speak_French">Ich kann Französisch sprechen (B2-Niveau oder höher).</label>
+				<label for="dyslexia">Ich habe Dyslexie.</label>
+				<label for="dyscalculia">Ich habe Dyskalkulie.</label>
+				<label for="calc_problems">Ich habe Schwierigkeiten mit Kopfrechnen.</label>
+				<label for="grammar_problems">Ich habe Probleme mit deutscher Grammatik.</label>
+				<label for="ortho_problems">Ich habe Probleme in Rechtschreibung.</label>
+				<label for="read_book">Ich habe in den letzten zwei Jahren ein Buch von vorne bis hinten gelesen.</label>
+			</p-input>
+		</p-formframe>
+		<p-back></p-back><p-next send></p-next>
+		<div style="height:3em;"></div>
+	</p-slide>	
+	
+	<p-slide name="continue_to_task">
+		<p-center>
+			<p>
+				Perfekt, wir können jetzt mit den Aufgaben beginnen.
+				Sie müssen nun die Tastatur verwenden.<br/>
+				(<kbd>Leertase</kbd> und <b>alle Zahlen</b>)
+			</p>
+			<p-back></p-back><p-next></p-next>
+		</p-center>
+	</p-slide>
+	
+<p-slide name="instructions">
+	<p-formframe align="justify">
+		<h1 style="padding-top:1em;">Instruktionen zur Aufgabe</h1>
+		<p>
+			Ein <b>Pluszeichen (+)</b> erscheint auf dem Bildschirm. 
+			Drücken Sie die <kbd>Leertaste</kbd> um eine Aufgabe zu sehen. 
+			Sobald Sie die Lösung wissen, lassen Sie die Leertaste los. 
+			Die Aufgabe wird verschwinden und ein Feld zur Eingabe der Lösung erscheint.
+		</p>
+		<p>
+			Geben Sie Ihre Antwort ein.
+			Drücken Sie erneut die Leertaste für die nächste Aufgabe.
+		</p>
+		<p>
+			Versuchen Sie nicht, sich die Aufgabe zu merken. Sie sollten die Lösung bereits kennen, wenn Sie die  <kbd>Leertaste</kbd> 
+			loslassen.
+		</p>
+		<p>
+			Die Hauptaufgabe wird <b jsfill="pslides.data.teststimuli.length">444</b>
+			Additionsuafgaben beeinhalten. Nach je <span jsfill="nPerBlock">30</span> Aufgaben, können Sie eine Pause machen. Seien Sie so <b>schnell und genau</b> wie möglich.
+		</p>
+		<p jsfill="sendOutData()" hidden></p>
+		<p align="center">
+			<p-next>Weiter</p-next>
+		</p>
+	</p-formframe>
+</p-slide>
+
+<p-slide name="repeat_instructions" keysnext="Space">
+	<p-center>
+		<p><b>Bitte vergessen Sie nicht:</b></p>
+		<p>
+			Lassen Sie die <kbd>Leertaste</kbd> während des Rechnens gedrückt.
+			Das <b>hilft Ihnen</b>, weil Sie die Aufgabe weiter sehen können.
+		</p>
+		<p>
+			Nach dem loslassen der <kbd>Leertaste</kbd> geben Sie Ihre Antwort in des Feld ein.
+		</p>
+		<p>Versuchen Sie, so <b>schenll und genau</b> wie möglich zu sein.</p>
+		
+		<p align="center" style="margin-top:3em;">
+			Um die Übung zu <b>starten,</b> drücken Sie die <kbd>Leertaste</kbd>.
+		</p>
+	</p-center>
+</p-slide>	
+
+	<script>
+		// ADDITION PRACTICE
+		// Before running the task:
+		addition = pslides.data.practicestimuli;
+		Iterator = 0, completedBlocks=0;	
+		ncorrect = 0.00001, nincorrect = 0.00001;
+	</script>
+	<p-slide name="blank_begin_practice" maxms="1000"></p-slide>
+	<p-while cond="ncorrect < addition.length * 0.7" name="addition_practice"> 
+		<p-set name="practice_trial" id="trial_set">
+			<p-slide name="trial_blank" maxms="400"></p-slide>
+			<p-slide name="trial_space">
+				<p-center class="probeterm"><span class="plussign">+</span></p-center>
+			</p-slide>
+			<p-slide name="trial_response">
+				<p-var name="stim" jsfill="addition[Iterator]">{{stim}}</p-var>
+				<p-var name="leftCorrect" jsfill="leftCorrect">{{leftCorrect}}</p-var>
+				<p-center class="probeterm">
+					<p-nobr class="probeterm">
+						<span class="summand" jsfill="addition[Iterator].summand1">S1</span>
+						<span class="plusspace">&nbsp;</span>
+						<span class="plussign">+</span>
+						<span class="plusspace">&nbsp;</span>
+						<span class="summand" jsfill="addition[Iterator].summand2">S2</span>
+					</p-nobr>
+				</p-center>
+			</p-slide>
+			<p-slide name="trial_typedigits" keysnext="Space">
+				<p-center class="responsedisplay"></p-center>
+			</p-slide>
+			<script>
+				// clear number pad/pads:
+				clearResponseBoxes();
+				// determine if response was correct:
+				determineCorrectness();
+			</script>
+			<p-slide name="trial_blank" maxms="100">
+				<p-var name="response_number" jsfill="lastResponse">{{lastResponse}}</p-var>
+				<p-var name="accuracy" jsfill="Number(isAccurate)">{{accuracy}}</p-var>
+				<p-var name="validity" jsfill="Number(isAccurate!==null)">{{validity}}</p-var>
+			</p-slide>
+		</p-set>
+		<p-slide name="trial_feedback" maxms="900">
+			<p-center jsfill="writeFeedback()">{{Feedback}}</p-center>
+		</p-slide>
+		<p-if cond="slowTyping">
+			<p-slide name="type_immediately" maxms="2500">
+				<p-center style="font-size:2em;">
+					<p-nobr>&#128517; Bitte sofort &#128517;<br/>das Ergebnis eingeben.</p-nobr>
+				</p-center>
+			</p-slide>
+			<script>slowTyping=false;</script>
+		</p-if>
+		<script>
+			Iterator++;
+			if (addition !== undefined && Iterator >= addition.length) {
+				Iterator = 0; ncorrect = 0; nincorrect = 0;
+			}
+		</script>
+	</p-while>
+	
+	<script>
+		// TEST PHASE
+		// Before running the task:
+		addition = pslides.data.teststimuli;
+		Iterator = 0; completedBlocks=0;	
+		ncorrect = 0; nincorrect = 0;
+		if (addition !== undefined) nPerBlock = Math.round(addition.length/nAllBlocks);
+	</script>
+	<p-slide name="practice_over" keysnext="Space">
+		<p-center>
+			<h1>Sehr schön! &#128522;</h1>
+			<p>
+				Der <b>Hauptteil</b> der Studie startet jetzt.
+				Es gibt nach je
+				<span jsfill="nPerBlock">50</span> Aufgaben eine Pause.
+			</p>
+			<p>
+				Wenn Sie starten wollen, drücken Sie die 
+				<kbd>Leertaste</kbd>.
+			</p>
+		</p-center>
+	</p-slide>
+	
+
+	<p-slide name="blank_begin_task" maxms="1000">
+		<p-center style="font-size:2em;"><p-nobr>&#x1F3C1; Los geht's! &#x1F3C1;</p-nobr></p-center>
+	</p-slide>
+	<p-slide name="blank_begin_task" maxms="1000"></p-slide>
+	<p-while cond="Iterator < addition.length" name="addition_test"> 
+		<p-set name="test_trial" idfill="trial_set"></p-set>
+		<p-if cond="slowTyping">
+			<p-slide name="type_immediately" maxms="2500">
+				<p-center style="font-size:2em;">
+					<p-nobr>&#128517; Bitte nicht warten &#128517;<br/>vor der Eingabe.</p-nobr>
+				</p-center>
+			</p-slide>
+			<script>slowTyping=false;</script>
+		</p-if>
+		<p-if cond="Iterator!=0 && Iterator%nPerBlock==0" name="is_pause">
+			<script>
+				completedBlocks++;
+				blockAccuracy = Math.round(100*ncorrect/(ncorrect+nincorrect))+" %";
+				// now split the break into mid-section and non-mid section.
+			</script>
+			<p-slide name="pause" keysnext="Space">
+				<p-center>
+					<p>
+						Sie haben 
+						<span jsfill="completedBlocks" name="block_number">{{block}}</span>
+						von <span jsfill="nAllBlocks">{{nAllBlocks}}</span> Blöcken geschafft.
+						Von den letzten <span jsfill="nPerBlock"></span> Aufgaben haben Sie
+						<b jsfill="blockAccuracy" name="block_percentage_correct">XX%</b> richtig gemacht.
+					</p>
+					<p>Sie können jetzt eine kurze Pause machen.</p>
+					<p>
+						Wenn Sie weitermachen wollen, drücken Sie die 
+						<kbd>Leertaste</kbd>.
+					</p>
+				</p-center>
+				<p jsfill="sendOutData()" hidden></p>
+			</p-slide>
+			<script>ncorrect = 0; nincorrect = 0;</script>
+			<p-slide name="after_pause_blank" maxms="500"></p-slide>
+		</p-if>
+		<script>Iterator++;</script>
+	</p-while>
+
+	<p-slide name="you_finished" group="fixed">
+		<p-center>
+			<h1>Bravo! &#x1F929;</h1>
+			<p>Sie haben das Experiment erfolgreich beendet.</p>
+			<div style="height:3em;"></div>
+			<p-next>Weiter</p-next>
+		</p-center>
+	</p-slide>
+	
+	
+<p-slide name="post_questions">
+	<p-formframe>
+		<h1 style="margin-bottom:1.5em;">Ein paar letzte Fragen</h1>
+		
+		<p><b>Haben Sie eine bestimmte Strategie genutzt, um die Aufgaben zu lösen?</b></p>
+		<p-input name="strategy" type="checkbox">
+			<label for="strategy_digit">Bei einfachen Aufgaben habe ich nur die Ziffern addiert.</label>
+			<label for="strategy_verbal">Bei schwierigen Aufgaben habe ich die Rechnung innerlich verbal durchgeführt.</label>
+			<label for="strategy_carry">Bei Aufgaben mit Übertrag habe ich automatisch 10 dazugezählt.</label>
+			<label for="strategy_units">Ich habe zuerst die Einer addiert und dann zur größeren Zahl hinzugezählt.</label>
+			<label for="strategy_other">Ich habe eine andere Strategie verwendet:<br/>
+				<textarea name="other_strategy" id="other_strategy" style="width:100%;margin:0;"></textarea>
+			</label>
+		</p-input>
+		
+		<div style="margin-bottom:2em;">
+			<b>Haben Sie ein Muster in der Reihenfolge der Aufgaben erkannt?</b><br/>
+			<textarea name="noticed_pattern" id="noticed_pattern"></textarea>
+		</div>
+		
+		<div style="margin-bottom:2em;">
+			<b>Eine der zu addierenden Zahlen war immer zwischen 10 und 19.<br>
+			Haben Sie diese Tatsache ausnutzen können? Wenn ja, wie?</b><br/>
+			<textarea name="teen_strategy" id="teen_strategy"></textarea>
+		</div>
+		
+		<div>
+			<b>Haben Sie die Zahlen der Additionsaufgaben mit einer inneren Stimme vorgelesen, um sie sich besser zu merken?</b><br/>
+			<p-input type="likert" name="inner_reading" required
+			options="nie;fast nie;manchmal;mal so, mal so;häufig;fast immer;immer"></p-input>
+		</div>
+		
+		<div>
+			<b>Haben Sie sich Zwischenergebnisse gemerkt, indem Sie die Zahlwörter innerlich ausgesprochen haben?</b><br/>
+			<p-input type="likert" name="interim_verbal" required
+			options="nie;fast nie;manchmal;mal so, mal so;häufig;fast immer;immer"></p-input>
+		</div>
+		
+		<div>
+			<b>Haben Sie sich Zwischenergebnisse gemerkt, indem Sie sich die Zahlen bildlich vorgestellt haben?</b><br/>
+			<p-input type="likert" name="interim_visual" required
+			options="nie;fast nie;manchmal;mal so, mal so;häufig;fast immer;immer"></p-input>
+		</div>
+		
+		<div>
+			<b>Waren Ihre Finger Ihnen beim Rechnen irgendwie behilflich?</b><br/>
+			<p-input type="likert" name="interim_fingers" required
+			options="nie;fast nie;manchmal;mal so, mal so;häufig;fast immer;immer"></p-input>
+		</div>
+		
+		<div>
+			<b>Fanden Sie die Aufgaben eher schwer oder eher leicht?</b><br/>
+			<p-input type="likert" name="task_difficulty" required
+			options="sehr schwierig;schwierig;eher schwierig;weder schwierig noch einfach;eher einfach;einfach;sehr einfach"></p-input>
+		</div>
+		
+		<div>
+			<b>Haben Sie weitere Anmerkungen zu den Aufgaben oder Kritik, wie wir diese verbessern könnten?</b><br/>
+			<textarea name="comment_text" id="comment_text"></textarea>
+		</div>
+		
+		<p align="center" style="margin-top:5em;"><p-next>Weiter</p-next></p>
+	</p-formframe>
+</p-slide>
+	<p-slide name="upload_data">
+		<script>sendOutData(element=document.getElementById("upload_data"));</script>
+		<p-formframe align="center">
+			<h1>Ihre Daten</h1>
+			<p>
+				Sie können Ihre Daten jetzt senden.
+				Bitte stellen Sie sicher, dass Ihre Internetverbindung stabil ist.
+			</p>
+			<p><p-upload id="upload_data" format="csv">Datenübertragung erneut versuchen</p-upload></p>
+			<p>Anonymisierte Daten auf einen gesicherten Server hochladen:</p>
+			<p><p-message for="upload_data"><span style="color:darkgrey;">Daten noch nicht gesendet.</span></p-message></p>
+			<p>Sie haben die Möglichkeit, Ihre eigenen Daten herunterzuladen:</p>
+			<p><p-download id="download_data" format="csv">Meine Daten herunterladen</p-download></p>
+			<p><p-message for="download_data"></p-message></p>
+			<p align="center" style="margin-top:3em"><p-next>Beenden</p-next></p>
+		</p-formframe>
+	</p-slide>
+	<p-slide name="thank_you_end">
+		<p-center>
+			<p>
+				&#x1F64F; <b>Vielen Dank,</b> dass Sie an unserer Studie teilgenommen haben! &#x1F64F;<br/><br/>
+				Bitte sagen Sie der versuchsleitenden Person Bescheid.
+			</p>
+			<p>
+				<p-back>Zurück</p-back>
+			</p>
+		</p-center>
+	</p-slide>
+</body>
+</html>
