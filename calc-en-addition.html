@@ -7,74 +7,11 @@
 	<base href="http://127.0.0.1/"/>
 	<!-- <base href="https://romans.cc/"/> -->
 	<link type="text/css" rel="stylesheet" href="lib/pslides/v0.3/style.css"/>
+	<link type="text/css" rel="stylesheet" href="/u/rj/syntax-calc/app/calc_style.css"/>
 	<script src="lib/pslides/v0.3/main.js"></script>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body style="font-size:1.2em;">
-
-<style>
-.responsedisplay {
-	color: black;
-	padding: 0.1em;
-	background-color: #F8F8F8;
-	border: 2px solid black;
-	min-width: 21vh;
-	min-height: 15vh;
-}
-.plusspace {
-	font-size: 3vh;
-}
-.plussign, .summand, .responsedisplay {
-	font-size: 12vh;
-}
-.mask {
-	font-size: 9vh;
-	font-weight: bold;
-}
-
-.responsedisplay, .probeterm {
-	font-family: "Consolas", "Courier New", monospace;
-}
-
-p-nobr.probeterm {
-    font-size: 0;
-    /* optional but often helpful */
-    letter-spacing: 0;
-}
-
-div.left_screenbutton, div.right_screenbutton {
-	position:fixed;
-	bottom: 2em;
-	padding: 0.7em;
-	border-radius: 50%;
-	font-size: 2em;
-	width: 1em;
-	height: 1em;
-	color: white;
-	font-family: monospace, monospace;
-}
-
-div.left_screenbutton {
-	left: 1em;
-}
-
-div.right_screenbutton {
-	right: 1em;
-}
-
-.red {
-	background-color: red;
-}
-.blue {
-	background-color: blue;
-}
-
-/* Pre-Questionnaire */
-p.question {
-	margin-bottom: 0em;
-}
-
-</style>
 
 <p-data id="teststimuli" format="csv" order="pseudoshuffle(3)" src="/u/rj/syntax-calc/app/calc-test_teens.csv"></p-data>
 <p-data id="practicestimuli" format="csv" order="pseudoshuffle(3)" src="/u/rj/syntax-calc/app/calc-practice_teens.csv"></p-data>
@@ -224,12 +161,62 @@ p.question {
 				<label for="ortho_problems">I experience spelling problems.</label>
 				<label for="read_book">I have read a book from beginning to end within the last two years.</label>
 			</p-input>
+			
+				
+			<p class="question">
+				<b>What is <u>your</u> highest level of education?</b><br/>
+				<span class="annotation" id="edu_annotation">If none of the options fit exactly, please select the closest equivalent.</span>
+			</p>
+			<p-input type="radio" name="education_self" id="question_my_edu" required>
+				<label for="edu_none">No formal qualifications</label>
+				<label for="edu_basic">GCSEs, O-Levels, or equivalent (e.g. CSEs)</label>
+				<label for="edu_vocational">Vocational qualifications (e.g. NVQ Level 1–3, BTEC, apprenticeship)</label>
+				<label for="edu_intermediate">A-Levels, AS-Levels, International Baccalaureate, or Level 3 vocational</label>
+				<label for="edu_upper_secondary">Higher education access qualification (e.g. Access to HE Diploma)</label>
+				<label for="edu_bachelor">Bachelor's degree (e.g. BA, BSc, BEng)</label>
+				<label for="edu_master">Postgraduate degree (Master's, PhD, or equivalent)</label>
+				<label for="edu_other">Other qualification</label>
+				<label for="edu_no">I don't know or prefer not to say</label>
+			</p-input>
+
+			<p class="question">
+				<b>What is the highest level of education completed by your <u>mother</u>?</b><br/>
+				<span class="annotation" idfill="edu_annotation"></span>
+			</p>
+			<p-input type="radio" name="education_mother" id="question_mother_edu" required>
+				<label for="edu_none_mother">No formal qualifications</label>
+				<label for="edu_basic_mother">GCSEs, O-Levels, or equivalent (e.g. CSEs)</label>
+				<label for="edu_vocational_mother">Vocational qualifications (e.g. NVQ Level 1–3, BTEC, apprenticeship)</label>
+				<label for="edu_intermediate_mother">A-Levels, AS-Levels, International Baccalaureate, or Level 3 vocational</label>
+				<label for="edu_upper_secondary_mother">Higher education access qualification (e.g. Access to HE Diploma)</label>
+				<label for="edu_bachelor_mother">Bachelor's degree (e.g. BA, BSc, BEng)</label>
+				<label for="edu_master_mother">Postgraduate degree (Master's, PhD, or equivalent)</label>
+				<label for="edu_other_mother">Other qualification</label>
+				<label for="edu_no_mother">I don't know or prefer not to say</label>
+			</p-input>
+
+			<p class="question">
+			<b>What is the highest level of education completed by your <u>father</u>?</b><br/>
+			<span class="annotation" idfill="edu_annotation"></span>
+			</p>
+			<p-input type="radio" name="education_father" id="question_father_edu" required>
+				<label for="edu_none_father">No formal qualifications</label>
+				<label for="edu_basic_father">GCSEs, O-Levels, or equivalent (e.g. CSEs)</label>
+				<label for="edu_vocational_father">Vocational qualifications (e.g. NVQ Level 1–3, BTEC, apprenticeship)</label>
+				<label for="edu_intermediate_father">A-Levels, AS-Levels, International Baccalaureate, or Level 3 vocational</label>
+				<label for="edu_upper_secondary_father">Higher education access qualification (e.g. Access to HE Diploma)</label>
+				<label for="edu_bachelor_father">Bachelor's degree (e.g. BA, BSc, BEng)</label>
+				<label for="edu_master_father">Postgraduate degree (Master's, PhD, or equivalent)</label>
+				<label for="edu_other_father">Other qualification</label>
+				<label for="edu_no_father">I don't know or prefer not to say</label>
+			</p-input>
+			
+			
 		</p-formframe>
 		<p-back></p-back><p-next send></p-next>
 		<div style="height:3em;"></div>
 	</p-slide>	
 	
-
 	<p-slide name="continue_to_task">
 		<p-center>
 			<p>
