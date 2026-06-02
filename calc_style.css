@@ -1,0 +1,66 @@
+.responsedisplay {
+	color: black;
+	padding: 0.1em;
+	background-color: #F8F8F8;
+	border: 2px solid black;
+	min-width: 21vh;
+	min-height: 15vh;
+}
+.plusspace {
+	font-size: 3vh;
+}
+.plussign, .summand, .responsedisplay {
+	font-size: 12vh;
+}
+.mask {
+	font-size: 9vh;
+	font-weight: bold;
+}
+
+.responsedisplay, .probeterm {
+	font-family: "Consolas", "Courier New", monospace;
+}
+
+p-nobr.probeterm {
+    font-size: 0;
+    /* optional but often helpful */
+    letter-spacing: 0;
+}
+
+div.left_screenbutton, div.right_screenbutton {
+	position:fixed;
+	bottom: 2em;
+	padding: 0.7em;
+	border-radius: 50%;
+	font-size: 2em;
+	width: 1em;
+	height: 1em;
+	color: white;
+	font-family: monospace, monospace;
+}
+
+div.left_screenbutton {
+	left: 1em;
+}
+
+div.right_screenbutton {
+	right: 1em;
+}
+
+.red {
+	background-color: red;
+}
+.blue {
+	background-color: blue;
+}
+
+/* Pre-Questionnaire */
+p.question {
+	margin-bottom: 0em;
+}
+span.annotation {
+	display:block;
+	font-size:0.8em;
+	line-height: 1.05em;
+	padding-left: 1em;
+}

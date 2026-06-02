@@ -8,73 +8,10 @@
 	<!-- <base href="https://romans.cc/"/> -->
 	<link type="text/css" rel="stylesheet" href="lib/pslides/v0.3/style.css"/>
 	<script src="lib/pslides/v0.3/main.js"></script>
+	<link type="text/css" rel="stylesheet" href="/u/rj/syntax-calc/app/calc_style.css"/>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body style="font-size:1.2em;">
-
-<style>
-.responsedisplay {
-	color: black;
-	padding: 0.1em;
-	background-color: #F8F8F8;
-	border: 2px solid black;
-	min-width: 21vh;
-	min-height: 15vh;
-}
-.plusspace {
-	font-size: 3vh;
-}
-.plussign, .summand, .responsedisplay {
-	font-size: 12vh;
-}
-.mask {
-	font-size: 9vh;
-	font-weight: bold;
-}
-
-.responsedisplay, .probeterm {
-	font-family: "Consolas", "Courier New", monospace;
-}
-
-p-nobr.probeterm {
-    font-size: 0;
-    /* optional but often helpful */
-    letter-spacing: 0;
-}
-
-div.left_screenbutton, div.right_screenbutton {
-	position:fixed;
-	bottom: 2em;
-	padding: 0.7em;
-	border-radius: 50%;
-	font-size: 2em;
-	width: 1em;
-	height: 1em;
-	color: white;
-	font-family: monospace, monospace;
-}
-
-div.left_screenbutton {
-	left: 1em;
-}
-
-div.right_screenbutton {
-	right: 1em;
-}
-
-.red {
-	background-color: red;
-}
-.blue {
-	background-color: blue;
-}
-
-/* Pre-Questionnaire */
-p.question {
-	margin-bottom: 0em;
-}
-
-</style>
 
 <p-data id="teststimuli" format="csv" order="pseudoshuffle(3)" src="/u/rj/syntax-calc/app/calc-test_teens.csv"></p-data>
 <p-data id="practicestimuli" format="csv" order="pseudoshuffle(3)" src="/u/rj/syntax-calc/app/calc-practice_teens.csv"></p-data>
@@ -204,6 +141,50 @@ p.question {
 				<label for="ortho_problems">Ich habe Probleme in Rechtschreibung.</label>
 				<label for="read_book">Ich habe in den letzten zwei Jahren ein Buch von vorne bis hinten gelesen.</label>
 			</p-input>
+			
+			
+			<p class="question"><b>Welcher ist <u>Ihr</u> höchster Bildungsabschluss?</b><br/>
+				<span class="annotation" id="edu_annotation">Wenn kein Abschluss passt, geben Sie bitte einen gleichwertigen Abschluss an.</span>
+			</p>
+			<p-input type="radio" name="education_self" id="question_my_edu" required>
+				<label for="edu_none">Kein Schulabschluss</label>
+				<label for="edu_basic">Hauptschulabschluss</label>
+				<label for="edu_vocational">Realschulabschluss</label>
+				<label for="edu_intermediate">Fachhochschulreife / Fachabitur</label>
+				<label for="edu_upper_secondary">Abitur (allgemeine Hochschulreife)</label>
+				<label for="edu_bachelor">Bachelor-Abschluss</label>
+				<label for="edu_master">Master-Abschluss oder höher</label>
+				<label for="edu_no">Ich weiß es nicht oder möchte es nicht angeben.</label>
+			</p-input>
+			
+			<p class="question"><b>Welcher ist der höchste Bildungsabschluss Ihrer <u>Mutter</u>?</b><br/>
+				<span class="annotation" idfill="edu_annotation"></span>
+			</p>
+			<p-input type="radio" name="education_mother" id="question_mother_edu" required>
+				<label for="edu_none_mother">Kein Schulabschluss</label>
+				<label for="edu_basic_mother">Hauptschulabschluss</label>
+				<label for="edu_vocational_mother">Realschulabschluss</label>
+				<label for="edu_intermediate_mother">Fachhochschulreife / Fachabitur</label>
+				<label for="edu_upper_secondary_mother">Abitur (allgemeine Hochschulreife)</label>
+				<label for="edu_bachelor_mother">Bachelor-Abschluss</label>
+				<label for="edu_master_mother">Master-Abschluss oder höher</label>
+				<label for="edu_no_mother">Ich weiß es nicht oder möchte es nicht angeben.</label>
+			</p-input>
+			
+			<p class="question"><b>Welcher ist der höchste Bildungsabschluss Ihres <u>Vaters</u>?</b><br/>
+				<span class="annotation" idfill="edu_annotation"></span>
+			</p>
+			<p-input type="radio" name="education_mother" id="question_mother_edu" required>
+				<label for="edu_none_father">Kein Schulabschluss</label>
+				<label for="edu_basic_father">Hauptschulabschluss</label>
+				<label for="edu_vocational_father">Realschulabschluss</label>
+				<label for="edu_intermediate_father">Fachhochschulreife / Fachabitur</label>
+				<label for="edu_upper_secondary_father">Abitur (allgemeine Hochschulreife)</label>
+				<label for="edu_bachelor_father">Bachelor-Abschluss</label>
+				<label for="edu_master_father">Master-Abschluss oder höher</label>
+				<label for="edu_no_father">Ich weiß es nicht oder möchte es nicht angeben.</label>
+			</p-input>
+			
 		</p-formframe>
 		<p-back></p-back><p-next send></p-next>
 		<div style="height:3em;"></div>

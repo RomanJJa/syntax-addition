@@ -7,74 +7,11 @@
 	<base href="http://127.0.0.1/"/>
 	<!-- <base href="https://romans.cc/"/> -->
 	<link type="text/css" rel="stylesheet" href="lib/pslides/v0.3/style.css"/>
+	<link type="text/css" rel="stylesheet" href="/u/rj/syntax-calc/app/calc_style.css"/>
 	<script src="lib/pslides/v0.3/main.js"></script>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body style="font-size:1.2em;">
-
-<style>
-.responsedisplay {
-	color: black;
-	padding: 0.1em;
-	background-color: #F8F8F8;
-	border: 2px solid black;
-	min-width: 21vh;
-	min-height: 15vh;
-}
-.plusspace {
-	font-size: 3vh;
-}
-.plussign, .summand, .responsedisplay {
-	font-size: 12vh;
-}
-.mask {
-	font-size: 9vh;
-	font-weight: bold;
-}
-
-.responsedisplay, .probeterm {
-	font-family: "Consolas", "Courier New", monospace;
-}
-
-p-nobr.probeterm {
-    font-size: 0;
-    /* optional but often helpful */
-    letter-spacing: 0;
-}
-
-div.left_screenbutton, div.right_screenbutton {
-	position:fixed;
-	bottom: 2em;
-	padding: 0.7em;
-	border-radius: 50%;
-	font-size: 2em;
-	width: 1em;
-	height: 1em;
-	color: white;
-	font-family: monospace, monospace;
-}
-
-div.left_screenbutton {
-	left: 1em;
-}
-
-div.right_screenbutton {
-	right: 1em;
-}
-
-.red {
-	background-color: red;
-}
-.blue {
-	background-color: blue;
-}
-
-/* Pre-Questionnaire */
-p.question {
-	margin-bottom: 0em;
-}
-
-</style>
 
 <p-data id="teststimuli" format="csv" order="pseudoshuffle(3)" src="/u/rj/syntax-calc/app/calc-test_teens.csv"></p-data>
 <p-data id="practicestimuli" format="csv" order="pseudoshuffle(3)" src="/u/rj/syntax-calc/app/calc-practice_teens.csv"></p-data>
@@ -89,7 +26,7 @@ p.question {
 				C'est la première fois que cette question est étudiée avec une telle tâche.
 			</p>
 			<p>
-				<b>Les tâches dans cette expérience</b>:
+				<b>Les tâches dans cette expérience :</b>
 				Votre tâche consistera à effectuer des calculs mentaux. 
 				Les problèmes consisteront à additionner des nombres de 11 à 19.
 				Pour rester précis, cela nécessite une certaine <b>vigilance</b>.
@@ -97,7 +34,7 @@ p.question {
 				<b>aussi rapidement et précisément</b> que possible.
 			</p>
 			<p id="conditions">
-				<b>Conditions de participation</b>:
+				<b>Conditions de participation :</b>
 				<ul>
 					<li>Votre langue maternelle est le <b>français parlé en France</b> (et non en Belgique ou en Suisse).</li>
 					<li>Vous devez utiliser un ordinateur ou un portable <b>équipé d'un clavier</b> pour participer à cette expérience.</li>
@@ -108,19 +45,19 @@ p.question {
 				</ul>
 			</p>
 			<p>
-				<b>Arrêt de l'expérience</b>: 
+				<b>Arrêt de l'expérience :</b>
 				Vous pouvez arrêter l'expérience et fermer la fenêtre à tout moment, 
 				même si vous avez accepté de participer, sans aucune conséquence. 
 				Cependant, vous n’aurez pas accès à l’argent de participation.
 				Vous disposez du temps que vous estimez nécessaire pour prendre votre décision.
 			</p>
 			<p>
-				<b>Votre dédommagement</b>: 
+				<b>Votre dédommagement :</b>
 				Vous recevrez 10 € (sur Prolific) pour votre participation une fois l'expérimentation terminée (prévue pour Fevrier). 
 				Les informations de paiement seront affichées à la fin de l'expérience.
 			</p>
 			<p>
-				<b>Vos données</b>: 
+				<b>Vos données :</b>
 				L'expérience enregistrera les touches enfoncées sur votre ordinateur et 
 				l'heure à laquelle elles ont été enfoncées. Une fois l'expérience terminée, 
 				les données expérimentales seront stockées séparément de toute information personnelle telle que 
@@ -140,7 +77,7 @@ p.question {
 					J'accepte également que mes données puissent être utilisées à des fins de recherche.
 				</label>
 				<label for="requirements_fulfilled">
-					Je remplis les <a href="#conditions">les conditions</a> de participation mentionnées ci-dessus.
+					Je remplis <a href="#conditions">les conditions</a> de participation mentionnées ci-dessus.
 				</label>
 			</p-input>
 			<p>Si vous n'acceptez pas les conditions, vous ne pourrez pas participer et vous pourrez fermer la fenêtre.</p>
@@ -193,14 +130,14 @@ p.question {
 				<label for="right_handed">droitier</label>
 			</p-input>
 			
-			<p class="question"><b>Avec quelle main écrivez-vous ?</b></p>
+			<p class="question"><b>Avec quelle main <p-nobr>écrivez-vous ?</p-nobr></b></p>
 			<p-input type="radio" name="writing_handedness" required>
 				<label for="l_handed_write">la main gauche</label>
 				<label for="b_handed_write">la main droite et de la main gauche</label>
 				<label for="r_handed_write">la main droite</label>
 			</p-input>
 			
-			<p class="question"><b>Lesquelles des affirmations suivantes s'appliquent à vous ?</b></p>
+			<p class="question"><b>Lesquelles des affirmations suivantes s'appliquent à <p-nobr>vous ?</p-nobr></b></p>
 			<p-input type="checkbox">
 				<label for="bilingual">J'ai grandi dans un foyer bilingue.</label>
 				<label for="mothertongue">Le français est ma langue maternelle.</label>
@@ -215,6 +152,49 @@ p.question {
 				<label for="ortho_problems">J'ai des problèmes d'orthographe.</label>
 				<label for="read_book">J'ai lu un livre du début à la fin au cours des deux dernières années.</label>
 			</p-input>
+			
+			<p class="question"><b>Quel est <u>votre</u> niveau d'études le plus <p-nobr>élevé ?</p-nobr></b><br/>
+				<span class="annotation" id="edu_annotation">Si aucune des qualifications énumérées ne convient, veuillez préciser une qualification équivalente.</span>
+			</p>
+			<p-input type="radio" name="education_self" id="question_my_edu" required>
+				<label for="edu_none">Aucun diplôme</label>
+				<label for="edu_basic">Brevet des collèges / CEP</label>
+				<label for="edu_vocational">CAP / BEP / Bac professionnel</label>
+				<label for="edu_intermediate">Baccalauréat technologique / professionnel</label>
+				<label for="edu_upper_secondary">Baccalauréat général</label>
+				<label for="edu_bachelor">Licence / BTS / DUT</label>
+				<label for="edu_master">Master ou plus</label>
+				<label for="edu_no">Je ne sais pas, ou je ne veux pas le dire.</label>
+			</p-input>
+			
+			<p class="question"><b>Quel est le niveau d'études le plus élevé de votre <p-nobr><u>mère</u> ?</p-nobr></b><br/>
+				<span class="annotation" idfill="edu_annotation"></span>
+			</p>
+			<p-input type="radio" name="education_mother" id="question_mother_edu" required>
+				<label for="edu_none_mother">Aucun diplôme</label>
+				<label for="edu_basic_mother">Brevet des collèges / CEP</label>
+				<label for="edu_vocational_mother">CAP / BEP / Bac professionnel</label>
+				<label for="edu_intermediate_mother">Baccalauréat technologique / professionnel</label>
+				<label for="edu_upper_secondary_mother">Baccalauréat général</label>
+				<label for="edu_bachelor_mother">Licence / BTS / DUT</label>
+				<label for="edu_master_mother">Master ou plus</label>
+				<label for="edu_no_mother">Je ne sais pas, ou je ne veux pas le dire.</label>
+			</p-input>
+			
+			<p class="question"><b>Quel est le niveau d'études le plus élevé de votre <p-nobr><u>père</u> ?</p-nobr></b><br/>
+				<span class="annotation" idfill="edu_annotation"></span>
+			</p>
+			<p-input type="radio" name="education_mother" id="question_mother_edu" required>
+				<label for="edu_none_father">Aucun diplôme</label>
+				<label for="edu_basic_father">Brevet des collèges / CEP</label>
+				<label for="edu_vocational_father">CAP / BEP / Bac professionnel</label>
+				<label for="edu_intermediate_father">Baccalauréat technologique / professionnel</label>
+				<label for="edu_upper_secondary_father">Baccalauréat général</label>
+				<label for="edu_bachelor_father">Licence / BTS / DUT</label>
+				<label for="edu_master_father">Master ou plus</label>
+				<label for="edu_no_father">Je ne sais pas, ou je ne veux pas le dire.</label>
+			</p-input>
+			
 		</p-formframe>
 		<p-back></p-back><p-next send></p-next>
 		<div style="height:3em;"></div>
