@@ -3,7 +3,7 @@
 var Iterator = 0, completedBlocks=0, nAllBlocks = 12,
 	addition = [], leftCorrect = true, blockAccuracy = 0, 
 	ncorrect = 0.00001, nincorrect = 0.00001, isAccurate = null,
-	lastResponse="", nPerBlock = 40, slowTyping = false, typeLimit = 2100;
+	lastResponse="", nPerBlock = 40, slowTyping = false, typeLimit = 2000;
 
 // p = pslides.currentSlide.querySelector("p"); p.innerHTML = createMask(n=8)
 function createMask(n=5, join="") {
